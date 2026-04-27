@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allied Health Programs | Fall 2026 Schedule Update</title>
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", Calibri, Arial, sans-serif;
+      background: #F7F3EE;
+      color: #3C3C3C;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Palette Variables ────────────────────────────────────────────── */
+    :root {
+      --sage:        #8FAD9A;
+      --sage-dark:   #5E7D6C;
+      --lavender:    #A89EC0;
+      --lav-dark:    #6B5B8C;
+      --rose:        #C4969A;
+      --rose-dark:   #9A5A5E;
+      --teal:        #7AACB0;
+      --teal-dark:   #4E8A8E;
+      --cream:       #F7F3EE;
+      --cream-dark:  #EDE7DE;
+      --light-sage:  #D4E6DC;
+      --light-lav:   #E8E4F0;
+      --light-rose:  #F0E0E0;
+      --light-teal:  #D6ECEE;
+      --text:        #3C3C3C;
+      --text-mid:    #6B6B6B;
+      --white:       #FFFFFF;
+    }
+
+    /* ── Top Banner ───────────────────────────────────────────────────── */
+    .site-header {
+      background: var(--sage-dark);
+      color: var(--white);
+      padding: 48px 5% 40px;
+      border-bottom: 6px solid var(--lavender);
+    }
+    .site-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 8px;
+    }
+    .site-header p {
+      font-size: 1.05rem;
+      color: var(--light-sage);
+      font-style: italic;
+    }
+    .program-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+    .program-tag {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Sticky Nav ───────────────────────────────────────────────────── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream-dark);
+      border-bottom: 2px solid var(--sage);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .sticky-nav a {
+      display: inline-block;
+      padding: 11px 18px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-right: 1px solid rgba(0,0,0,0.07);
+      transition: background 0.15s;
+    }
+    .sticky-nav a:hover { background: var(--light-sage); }
+
+    /* ── Main Layout ──────────────────────────────────────────────────── */
+    main { max-width: 960px; margin: 0 auto; padding: 40px 5% 80px; }
+
+    /* ── Section Titles ───────────────────────────────────────────────── */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      padding: 14px 20px;
+      border-radius: 4px 4px 0 0;
+      margin-bottom: 0;
+    }
+    .section-block {
+      margin-bottom: 48px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .section-body {
+      background: var(--white);
+      padding: 28px 24px;
+      border: 1px solid var(--cream-dark);
+      border-top: none;
+    }
+
+    /* ── Color Themes per Section ─────────────────────────────────────── */
+    .theme-sage   .section-title { background: var(--sage-dark); }
+    .theme-lav    .section-title { background: var(--lav-dark); }
+    .theme-rose   .section-title { background: var(--rose-dark); }
+    .theme-teal   .section-title { background: var(--teal-dark); }
+    .theme-sage   .section-body  { border-color: var(--light-sage); }
+    .theme-lav    .section-body  { border-color: var(--light-lav); }
+    .theme-rose   .section-body  { border-color: var(--light-rose); }
+    .theme-teal   .section-body  { border-color: var(--light-teal); }
+
+    /* ── Overview Cards ───────────────────────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .module-card {
+      border-radius: 6px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    }
+    .module-card .card-head {
+      padding: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+    .module-card .card-body {
+      padding: 18px 10px;
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-top: none;
+    }
+    .module-card .card-weeks {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+    }
+    .module-card .card-label {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+    }
+    .card-sage  .card-head { background: var(--sage-dark); }
+    .card-sage  .card-weeks { color: var(--sage); }
+    .card-lav   .card-head { background: var(--lav-dark); }
+    .card-lav   .card-weeks { color: var(--lavender); }
+    .card-rose  .card-head { background: var(--rose-dark); }
+    .card-rose  .card-weeks { color: var(--rose); }
+
+    /* ── Programs Table ───────────────────────────────────────────────── */
+    .prog-rows { display: flex; flex-direction: column; gap: 8px; }
+    .prog-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 4px;
+      gap: 12px;
+    }
+    .prog-row .accent-bar {
+      width: 5px;
+      min-width: 5px;
+      height: 36px;
+      border-radius: 3px;
+    }
+    .prog-row .prog-name { font-weight: 700; font-size: 0.95rem; min-width: 220px; }
+    .prog-row .prog-detail { font-style: italic; color: var(--text-mid); font-size: 0.88rem; }
+    .prog-sage  { background: var(--light-sage); }
+    .prog-sage  .accent-bar { background: var(--sage); }
+    .prog-lav   { background: var(--light-lav); }
+    .prog-lav   .accent-bar { background: var(--lavender); }
+    .prog-rose  { background: var(--light-rose); }
+    .prog-rose  .accent-bar { background: var(--rose); }
+
+    /* ── Course Tables ────────────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+    }
+    thead tr th {
+      text-align: left;
+      padding: 10px 14px;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    thead tr th:last-child { text-align: center; }
+    tbody tr td {
+      padding: 11px 14px;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    tbody tr td:last-child {
+      text-align: center;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .theme-sage thead tr { background: var(--sage-dark); }
+    .theme-sage tbody tr:nth-child(odd) td { background: var(--light-sage); }
+    .theme-sage tbody tr:nth-child(even) td { background: var(--white); }
+    .theme-sage tbody tr td:last-child { color: var(--sage-dark); }
+
+    .theme-lav thead tr { background: var(--lav-dark); }
+    .theme-lav tbody tr:nth-child(odd) td { background: var(--light-lav); }
+    .theme-lav tbody tr:nth-child(even) td { background: var(--white); }
+    .theme-lav tbody tr td:last-child { color: var(--lav-dark); }
+
+    .theme-rose thead tr { background: var(--rose-dark); }
+    .theme-rose tbody tr:nth-child(odd) td { background: var(--light-rose); }
+    .theme-rose tbody tr:nth-child(even) td { background: var(--white); }
+    .theme-rose tbody tr td:last-child { color: var(--rose-dark); }
+
+    .theme-teal thead tr { background: var(--teal-dark); }
+    .theme-teal tbody tr:nth-child(odd) td { background: var(--light-teal); }
+    .theme-teal tbody tr:nth-child(even) td { background: var(--white); }
+    .theme-teal tbody tr td:last-child { color: var(--teal-dark); }
+
+    /* ── Info Banner ──────────────────────────────────────────────────── */
+    .info-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 16px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+      border: 1px solid;
+    }
+    .info-banner.teal  { background: var(--light-teal);  border-color: var(--teal);  color: var(--teal-dark); }
+    .info-banner.sage  { background: var(--light-sage);  border-color: var(--sage);  color: var(--sage-dark); }
+    .info-banner.lav   { background: var(--light-lav);   border-color: var(--lavender); color: var(--lav-dark); }
+    .info-banner.rose  { background: var(--light-rose);  border-color: var(--rose);  color: var(--rose-dark); }
+    .info-banner strong { font-weight: 700; }
+
+    /* ── Footnote ─────────────────────────────────────────────────────── */
+    .footnote {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      font-style: italic;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    /* ── Day/Evening Split ────────────────────────────────────────────── */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .split-panel {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .split-panel-head {
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--white);
+      text-align: center;
+    }
+    .split-panel-head.rose-head { background: var(--rose-dark); }
+    table.inner {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    table.inner thead tr th {
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      background: var(--light-rose);
+      color: var(--text);
+      font-weight: 700;
+    }
+    table.inner thead tr th:last-child { text-align: center; }
+    table.inner tbody tr:nth-child(odd) td { background: var(--light-rose); }
+    table.inner tbody tr:nth-child(even) td { background: var(--white); }
+    table.inner td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--cream-dark);
+      vertical-align: middle;
+    }
+    table.inner td:last-child {
+      text-align: center;
+      font-weight: 700;
+      color: var(--rose-dark);
+      white-space: nowrap;
+    }
+
+    /* ── Module 3 Cards ───────────────────────────────────────────────── */
+    .mod3-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .mod3-card {
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    }
+    .mod3-card .head {
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--white);
+      text-align: center;
+    }
+    .mod3-card .hrs {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      padding: 12px 10px 6px;
+      background: var(--white);
+    }
+    .mod3-card .desc {
+      padding: 6px 14px 16px;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-top: none;
+    }
+    .mod3-teal  .head { background: var(--teal-dark); }
+    .mod3-teal  .hrs  { color: var(--teal-dark); }
+    .mod3-lav   .head { background: var(--lav-dark); }
+    .mod3-lav   .hrs  { color: var(--lav-dark); }
+    .mod3-rose  .head { background: var(--rose-dark); }
+    .mod3-rose  .hrs  { color: var(--rose-dark); }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      background: var(--cream-dark);
+      border-top: 2px solid var(--sage);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .overview-grid  { grid-template-columns: 1fr; }
+      .split-grid     { grid-template-columns: 1fr; }
+      .mod3-grid      { grid-template-columns: 1fr; }
+      .prog-row       { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────────────── -->
+<header class="site-header">
+  <h1>Allied Health Programs: Fall 2026 Schedule Update</h1>
+  <p>Upcoming changes to program structure, module organization, and course scheduling</p>
+  <div class="program-tags">
+    <span class="program-tag">Medical Assisting</span>
+    <span class="program-tag">Medical Billing &amp; Coding</span>
+    <span class="program-tag">Patient Care Technician</span>
+  </div>
+</header>
+
+<!-- ── Navigation ─────────────────────────────────────────────────────────── -->
+<nav class="sticky-nav">
+  <a href="#overview">Overview</a>
+  <a href="#module1">Module 1</a>
+  <a href="#mod2-ma">Medical Assisting</a>
+  <a href="#mod2-pct">Patient Care Tech</a>
+  <a href="#mod2-mbc">Billing &amp; Coding</a>
+  <a href="#module3">Module 3</a>
+</nav>
+
+<!-- ── Main ───────────────────────────────────────────────────────────────── -->
+<main>
+
+  <!-- OVERVIEW -->
+  <section id="overview" class="section-block theme-sage" style="margin-top:36px;">
+    <div class="section-title">Program Overview: Fall 2026 Structure</div>
+    <div class="section-body">
+
+      <div class="overview-grid">
+        <div class="module-card card-sage">
+          <div class="card-head">Module 1 / Fall 1</div>
+          <div class="card-body">
+            <span class="card-weeks">7.5</span>
+            <span class="card-label">Weeks</span>
+          </div>
+        </div>
+        <div class="module-card card-lav">
+          <div class="card-head">Module 2 / Fall 2</div>
+          <div class="card-body">
+            <span class="card-weeks">7.5</span>
+            <span class="card-label">Weeks</span>
+          </div>
+        </div>
+        <div class="module-card card-rose">
+          <div class="card-head">Module 3</div>
+          <div class="card-body">
+            <span class="card-weeks">6</span>
+            <span class="card-label">Weeks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-rows">
+        <div class="prog-row prog-sage">
+          <div class="accent-bar"></div>
+          <div class="prog-name">Medical Assisting</div>
+          <div class="prog-detail">Day cohort (existing) + Afternoon cohort (NEW for Fall 2026)</div>
+        </div>
+        <div class="prog-row prog-lav">
+          <div class="accent-bar"></div>
+          <div class="prog-name">Medical Billing &amp; Coding</div>
+          <div class="prog-detail">Day + Evening</div>
+        </div>
+        <div class="prog-row prog-rose">
+          <div class="accent-bar"></div>
+          <div class="prog-name">Patient Care Technician</div>
+          <div class="prog-detail">Day</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODULE 1 -->
+  <section id="module1" class="section-block theme-sage">
+    <div class="section-title">Module 1: Foundation Courses (All Programs, 7.5 Weeks)</div>
+    <div class="section-body">
+
+      <div class="info-banner sage">
+        <strong>Shared Requirement:</strong>&nbsp;The following courses apply to all three programs during Module 1.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Hours per Week</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Medical Terminology 1 <sup>*</sup></td>
+            <td>6 hrs / week</td>
+          </tr>
+          <tr>
+            <td>Medical Math</td>
+            <td>3 hrs / week</td>
+          </tr>
+          <tr>
+            <td>Communication for Healthcare Settings</td>
+            <td>3 hrs / week</td>
+          </tr>
+          <tr>
+            <td>Technology for Healthcare</td>
+            <td>3 hrs / week</td>
+          </tr>
+          <tr>
+            <td>Introduction to Allied Health</td>
+            <td>3 hrs / week</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="footnote">
+        <sup>*</sup> Evening Medical Billing &amp; Coding students: Medical Terminology 1 meets 3 hrs/week instead of 6 hrs/week.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- MODULE 2: MEDICAL ASSISTING -->
+  <section id="mod2-ma" class="section-block theme-sage">
+    <div class="section-title">Module 2: Medical Assisting (7.5 Weeks)</div>
+    <div class="section-body">
+
+      <div class="info-banner teal">
+        <strong>NEW for Fall 2026:</strong>&nbsp;An afternoon cohort is being added in addition to the existing day cohort.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Hours per Week</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Phlebotomy</td>
+            <td>6 hrs / week</td>
+          </tr>
+          <tr>
+            <td>EKG</td>
+            <td>6 hrs / week</td>
+          </tr>
+          <tr>
+            <td>Medical Office Practice</td>
+            <td>6 hrs / week</td>
+          </tr>
+          <tr>
+            <td>Insurance / HIPAA</td>
+            <td>3 hrs / week</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </section>
+
+  <!-- MODULE 2: PATIENT CARE TECHNICIAN -->
+  <section id="mod2-pct" class="section-block theme-lav">
+    <div class="section-title">Module 2: Patient Care Technician (7.5 Weeks)</div>
+    <div class="section-body">
+
+      <div class="info-banner lav">
+        <strong>Session:</strong>&nbsp;Day only.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Hours per Week</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Phlebotomy</td>
+            <td>6 hrs / week</td>
+          </tr>
+          <tr>
+            <td>EKG</td>
+            <td>6 hrs / week</td>
+          </tr>
+          <tr>
+            <td>Introduction to Nursing Practice</td>
+            <td>9 hrs / week</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </section>
+
+  <!-- MODULE 2: MEDICAL BILLING & CODING -->
+  <section id="mod2-mbc" class="section-block theme-rose">
+    <div class="section-title">Module 2: Medical Billing &amp; Coding (7.5 Weeks)</div>
+    <div class="section-body">
+
+      <div class="info-banner rose">
+        <strong>Note:</strong>&nbsp;Course hours differ between the Day and Evening sections. Please refer to your section assignment.
+      </div>
+
+      <div class="split-grid">
+
+        <div class="split-panel">
+          <div class="split-panel-head rose-head">Day Section</div>
+          <table class="inner">
+            <thead>
+              <tr>
+                <th>Course</th>
+                <th>Hrs/Wk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Medical Billing &amp; Coding 1</td>
+                <td>7.5 hrs</td>
+              </tr>
+              <tr>
+                <td>Insurance &amp; HIPAA</td>
+                <td>4.5 hrs</td>
+              </tr>
+              <tr>
+                <td>EHR</td>
+                <td>4.5 hrs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="split-panel">
+          <div class="split-panel-head rose-head">Evening Section</div>
+          <table class="inner">
+            <thead>
+              <tr>
+                <th>Course</th>
+                <th>Hrs/Wk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Medical Billing &amp; Coding 1</td>
+                <td>6 hrs</td>
+              </tr>
+              <tr>
+                <td>Insurance &amp; HIPAA</td>
+                <td>7 hrs</td>
+              </tr>
+              <tr>
+                <td>EHR</td>
+                <td>4 hrs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODULE 3 -->
+  <section id="module3" class="section-block theme-teal">
+    <div class="section-title">Module 3: Externship and Review (All Programs, 6 Weeks)</div>
+    <div class="section-body">
+
+      <div class="info-banner teal">
+        <strong>Shared Requirement:</strong>&nbsp;Module 3 requirements apply to all three Allied Health programs.
+      </div>
+
+      <div class="mod3-grid">
+
+        <div class="mod3-card mod3-teal">
+          <div class="head">NHA Review</div>
+          <div class="hrs">6 hrs / week</div>
+          <div class="desc">
+            Comprehensive review sessions preparing students for NHA certification examinations.
+          </div>
+        </div>
+
+        <div class="mod3-card mod3-lav">
+          <div class="head">Externship Seminar</div>
+          <div class="hrs">3 hrs / week</div>
+          <div class="desc">
+            Structured seminar to complement and support the offsite externship experience.
+          </div>
+        </div>
+
+        <div class="mod3-card mod3-rose">
+          <div class="head">Offsite Externship</div>
+          <div class="hrs">Variable</div>
+          <div class="desc">
+            Students participate in a supervised externship at an approved clinical or professional site. Hours are variable.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer>
+  Allied Health Programs &nbsp;|&nbsp; Fall 2026 Schedule Update &nbsp;|&nbsp; For Internal Use
+</footer>
+
+</body>
+</html>
